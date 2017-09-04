@@ -50,13 +50,13 @@
             oneValue = oneValue.replace(new RegExp(char, 'g'), ''); //从字符串中删去所有和首字符一样的字符
             count[char] = CountTemp - oneValue.length;              //长度差的值即为相同的字符的数目
         }
-        var oneDetail = ""; //动态添加到DOM
-        var P = 0;          //符号概率
-        var PTotal = 0;     //符号概率之和
-        var Zi = 0;         //自信息量
-        var ZiTotal = 0;    //自信息量之和
-        var sym = 0;        //信源熵成员
-        var symTotal = 0;   //信源熵（成员和）
+        var oneDetail = "";     //动态添加到DOM
+        var P = 0;              //符号概率
+        var PTotal = 0;         //符号概率之和
+        var Zi = 0;             //自信息量
+        var ZiTotal = 0;        //自信息量之和
+        var sym = 0;            //信源熵成员
+        var symTotal = 0;       //信源熵（成员和）
 
         for (var property in count) {                                                   //按属性遍历对象，把数据从对象中读取出来
             if (count.hasOwnProperty(property)) {                                       //先判断是否有对应属性（没必要，不写会有警告）
@@ -67,13 +67,27 @@
                 sym = (-P / 100 * Math.log(P / 100) / Math.LN2).toFixed(3);             //得到信源熵成员的值
                 symTotal += parseFloat(sym);                                            //得到信源熵
                 //格式化数据适合表格
-                oneDetail = oneDetail + "<tr><td>" + property + "</td><td>" + count[property] + "</td><td>" + P + "%</td><td>" + Zi + "</td></td><td>" + sym + "</td></tr>";
+                oneDetail = oneDetail + "<tr>" +
+                        "<td>" + property + "</td>" +
+                        "<td>" + count[property] + "</td>" +
+                        "<td>" + P + "%</td>" +
+                        "<td>" + Zi + "</td>" +
+                        "<td>" + sym + "</td>" +
+                        "</tr>";
             } else {
                 oneDetail = "您输入的数据类型不正确！";
             }
         }
         //表格数据添加进DOM
-        document.getElementById("oneDetail").innerHTML = "<table><tr><th>字符</th><th>数量</th><th>概率</th><th>自信息量</th><th>概率*自信息量</th></tr>" + oneDetail + "<tr><td>合计</td><td>" + oneElement.value.length + "</td><td>" + PTotal.toFixed(1) + "%</td><td>" + ZiTotal.toFixed(3) + "</td><td>" + symTotal.toFixed(3) + "</td></tr></table>";
+        document.getElementById("oneDetail").innerHTML = "<table>" +
+                "<tr><th>字符</th><th>数量</th><th>概率</th><th>自信息量</th><th>概率*自信息量</th></tr>" +
+                oneDetail + "<tr>" +
+                "<td>合计</td>" +
+                "<td>" + oneElement.value.length + "</td>" +
+                "<td>" + PTotal.toFixed(1) + "%</td>" +
+                "<td>" + ZiTotal.toFixed(3) + "</td>" +
+                "<td>" + symTotal.toFixed(3) + "</td>" +
+                "</tr></table>";
     }
 </script>
 
@@ -135,7 +149,13 @@
                         maLen = Math.ceil(-Math.log(P) / Math.LN2);                 //得到码长
                         maAver += P * maLen;                                        //得到平均码长
                         //格式化数据适合表格
-                        twoDetail = twoDetail + "<tr><td>" + P + "</td><td>" + (PTotal - P).toFixed(3) + "</td><td>" + (-Math.log(P) / Math.LN2).toFixed(3) + "</td><td>" + maLen + "</td><td>" + maZi + "</td></tr>";
+                        twoDetail = twoDetail + "<tr>" +
+                                "<td>" + P + "</td>" +
+                                "<td>" + (PTotal - P).toFixed(3) + "</td>" +
+                                "<td>" + (-Math.log(P) / Math.LN2).toFixed(3) + "</td>" +
+                                "<td>" + maLen + "</td>" +
+                                "<td>" + maZi + "</td>" +
+                                "</tr>";
                     }
                 } else {
                     alert("检查到非数字数据！请检查您输入的数据");
@@ -145,7 +165,9 @@
                 alert("累加概率为：" + PTotal + "，请检查输入数据")
             } else {
                 //表格数据添加进DOM
-                document.getElementById("twoDetail").innerHTML = "<table><tr><th>概率</th><th>累加概率</th><th>自信息量</th><th>码长</th><th>码字</th></tr>" + twoDetail + "</table>";
+                document.getElementById("twoDetail").innerHTML = "<table>" +
+                        "<tr><th>概率</th><th>累加概率</th><th>自信息量</th><th>码长</th><th>码字</th></tr>" +
+                        twoDetail + "</table>";
                 //添加额外信息
                 twoDis.innerText = "信源熵：" + symTotal.toFixed(3) + "(bps)　　　　平均码长：" + maAver.toFixed(2) + "　　　　编码效率：" + (symTotal / maAver * 100).toFixed(1) + "%";
             }

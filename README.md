@@ -5,4 +5,4 @@
 
 　　2：香农编码（任意输入消息概率，利用香农编码方法进行编码，并计算信源熵和编码效率）
 
-<a href="http://hpu.lifanko.cn/xxl">查看演示</a>
+演示地址：http://hpu.lifanko.cn/xxl

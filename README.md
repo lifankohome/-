@@ -1,4 +1,4 @@
-##git 信息论与编码课程设计 - JavaScript
+## 信息论与编码课程设计 - JavaScript
 
 > **凡是可用 JavaScript 实现的功能，最终都将用 JavaScript 实现。**
 

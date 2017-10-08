@@ -24,4 +24,4 @@
 
 >（5） 取Pi二进制数的小数点后Ki位即为该消息符号的二进制码字。
 
-演示地址：[http://hpu.lifanko.cn/xxl]() 
+演示地址：http://hpu.lifanko.cn/xxl
